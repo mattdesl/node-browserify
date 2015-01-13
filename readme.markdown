@@ -333,6 +333,11 @@ while the boop page can have:
 <script src="boop.js"></script>
 ```
 
+This approach using `-r` and `-x` works fine for a small number of split assets,
+but there are plugins for automatically factoring out components which are
+described in the
+[partitioning section of the browserify handbook](https://github.com/substack/browserify-handbook#partitioning).
+
 ## api example
 
 You can use the API directly too:
@@ -496,8 +501,7 @@ module.exports = function (file) { return through() };
 ```
 
 You don't need to necessarily use the
-[through](https://npmjs.org/package/through) module, this is just a simple
-example.
+[through](https://npmjs.org/package/through) module. Browserify is compatable with the newer, more verbose [Transform streams](http://nodejs.org/api/stream.html#stream_class_stream_transform_1) built into Node v0.10.
 
 Here's how you might compile coffee script on the fly using `.transform()`:
 
@@ -523,7 +527,7 @@ Note that on the command-line with the `-c` flag you can just do:
 $ browserify -c 'coffee -sc' main.coffee > bundle.js
 ```
 
-Or better still, use the [coffeeify](https://github.com/substack/coffeeify)
+Or better still, use the [coffeeify](https://github.com/jnordberg/coffeeify)
 module:
 
 ```
